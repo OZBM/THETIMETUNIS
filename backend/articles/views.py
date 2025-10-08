@@ -9,3 +9,4 @@ class ArticleViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Article.objects.filter(status=Article.Status.PUBLISHED).order_by('-publish_date')
     serializer_class = ArticleSerializer
     lookup_field = 'slug'
+    filterset_fields = ['category__slug']
