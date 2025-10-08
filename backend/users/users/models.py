@@ -42,10 +42,6 @@ class UserManager(BaseUserManager):
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
 
-        # A superuser should probably have the admin role by default.
-        admin_role, _ = Role.objects.get_or_create(name=Role.RoleChoices.ADMINISTRATOR)
-        extra_fields.setdefault('role', admin_role)
-
         return self.create_user(email, password, **extra_fields)
 
 class User(AbstractBaseUser, PermissionsMixin):
