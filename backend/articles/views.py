@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from .models import Article
 from .serializers import ArticleSerializer
 
@@ -10,3 +10,5 @@ class ArticleViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ArticleSerializer
     lookup_field = 'slug'
     filterset_fields = ['category__slug']
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['title', 'body']
